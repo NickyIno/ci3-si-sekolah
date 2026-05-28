@@ -1,0 +1,41 @@
+<svg width="680" height="200" viewBox="0 0 680 200" xmlns="http://www.w3.org/2000/svg">
+
+  <rect width="680" height="200" fill="#f8f9fa" rx="12"/>
+
+  <!-- Left accent bar -->
+  <rect x="0" y="0" width="6" height="200" fill="#EF4223" rx="3"/>
+
+  <!-- Decorative circles background -->
+  <circle cx="620" cy="30" r="60" fill="#EF4223" opacity="0.06"/>
+  <circle cx="650" cy="160" r="45" fill="#EF4223" opacity="0.05"/>
+  <circle cx="580" cy="100" r="30" fill="#EF4223" opacity="0.04"/>
+
+  <!-- CI Logo flame -->
+  <g transform="translate(52, 55)">
+    <path d="M28 80 C8 65 0 45 10 28 C16 18 24 12 28 4 C32 12 36 20 32 32 C38 24 38 14 34 6 C44 18 48 36 44 52 C40 66 32 76 28 80Z" fill="#EF4223"/>
+    <path d="M28 72 C18 60 14 46 20 34 C22 40 26 44 26 50 C30 42 28 32 24 26 C32 34 36 48 32 60 C30 66 28 72 28 72Z" fill="#fff" opacity="0.35"/>
+  </g>
+
+  <!-- Title -->
+  <text x="120" y="90" font-family="sans-serif" font-size="32" font-weight="600" fill="#1a1a2e">SI Sekolah</text>
+
+  <!-- Tagline -->
+  <text x="122" y="118" font-family="sans-serif" font-size="15" fill="#555">Sistem Informasi Profil Sekolah Berbasis Web</text>
+
+  <!-- Divider -->
+  <line x1="120" y1="130" x2="560" y2="130" stroke="#e0e0e0" stroke-width="1"/>
+
+  <!-- Badges -->
+  <rect x="120" y="143" width="130" height="26" fill="#EF4223" rx="5"/>
+  <text x="185" y="161" font-family="sans-serif" font-size="12" fill="white" text-anchor="middle" font-weight="500">CodeIgniter 3.x</text>
+
+  <rect x="260" y="143" width="90" height="26" fill="#777BB4" rx="5"/>
+  <text x="305" y="161" font-family="sans-serif" font-size="12" fill="white" text-anchor="middle" font-weight="500">PHP 7.x</text>
+
+  <rect x="360" y="143" width="80" height="26" fill="#4479A1" rx="5"/>
+  <text x="400" y="161" font-family="sans-serif" font-size="12" fill="white" text-anchor="middle" font-weight="500">MySQL</text>
+
+  <rect x="450" y="143" width="110" height="26" fill="#2d6a4f" rx="5"/>
+  <text x="505" y="161" font-family="sans-serif" font-size="12" fill="white" text-anchor="middle" font-weight="500">Dashboard CMS</text>
+
+</svg>
