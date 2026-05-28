@@ -1,330 +1,225 @@
-﻿# ci3-si-sekolah
-<div align="center">
+<p align="center">
+  <img src="banner.svg" alt="SI Sekolah Banner" width="100%"/>
+</p>
 
-<img src="https://raw.githubusercontent.com/bcit-ci/CodeIgniter/develop/user_guide_src/source/_static/ci-logo-big.png" alt="CodeIgniter 3" width="120"/>
+# 🏫 SI Sekolah — Sistem Informasi Profil Sekolah
 
-# 🏫 Sistem Informasi Sekolah
-
-**Aplikasi profil sekolah berbasis web dengan dashboard manajemen konten**
-
-[![PHP](https://img.shields.io/badge/PHP-7.4+-8892BF?style=for-the-badge&logo=php&logoColor=white)](https://www.php.net/)
-[![CodeIgniter](https://img.shields.io/badge/CodeIgniter-3.x-EF4223?style=for-the-badge&logo=codeigniter&logoColor=white)](https://codeigniter.com/)
-[![MySQL](https://img.shields.io/badge/MySQL-5.7+-4479A1?style=for-the-badge&logo=mysql&logoColor=white)](https://www.mysql.com/)
-[![Bootstrap](https://img.shields.io/badge/Bootstrap-5.x-7952B3?style=for-the-badge&logo=bootstrap&logoColor=white)](https://getbootstrap.com/)
-[![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](LICENSE)
-
-[Demo](#) · [Laporan Bug](https://github.com/NickyIno/ci3-si-sekolah/issues) · [Request Fitur](https://github.com/NickyIno/ci3-si-sekolah/issues)
-
-</div>
+Aplikasi web berbasis **CodeIgniter 3** untuk mengelola dan menampilkan profil sekolah secara dinamis. Dilengkapi dengan dashboard admin untuk manajemen konten dan berbagai fitur keamanan.
 
 ---
 
-## 📋 Daftar Isi
+## 📋 Fitur Utama
 
-- [Tentang Proyek](#-tentang-proyek)
-- [Fitur](#-fitur)
-- [Keamanan](#-keamanan)
-- [Struktur Proyek](#-struktur-proyek)
-- [Database](#-database)
-- [Prasyarat](#-prasyarat)
-- [Instalasi](#-instalasi)
-- [Konfigurasi](#-konfigurasi)
-- [Penggunaan](#-penggunaan)
-- [Screenshot](#-screenshot)
-- [Kontribusi](#-kontribusi)
+### Halaman Publik
+- Profil sekolah (visi, misi, sambutan kepala sekolah)
+- Carousel / slider banner
+- Artikel & berita sekolah
+- Galeri foto
+- Data sarana & prasarana
 
----
-
-## 🎯 Tentang Proyek
-
-**Sistem Informasi Sekolah** adalah aplikasi web berbasis **CodeIgniter 3** yang dirancang untuk menampilkan profil sekolah secara online sekaligus menyediakan dashboard admin untuk mengelola seluruh konten secara dinamis — tanpa perlu menyentuh kode.
-
-Proyek ini cocok untuk SD, SMP, SMA, atau lembaga pendidikan lainnya yang membutuhkan website profil yang informatif dan mudah dikelola.
+### Dashboard Admin
+- Manajemen profil sekolah
+- Manajemen artikel (dengan slug otomatis & view counter)
+- Manajemen carousel
+- Manajemen galeri
+- Manajemen sarana & prasarana
+- Manajemen akun pengguna (admin & kontributor)
 
 ---
 
-## ✨ Fitur
+## 🔐 Fitur Keamanan
 
-### 🌐 Halaman Publik
-- **Beranda** — tampilan utama dengan carousel banner dan ringkasan informasi sekolah
-- **Profil Sekolah** — visi, misi, sambutan kepala sekolah, dan informasi umum
-- **Artikel / Berita** — daftar artikel dengan fitur paginasi dan penghitung penayangan
-- **Galeri** — koleksi foto kegiatan sekolah
-- **Sarana & Prasarana** — daftar fasilitas lengkap beserta kondisinya
-
-### 🔐 Dashboard Admin
-- **Manajemen Artikel** — tambah, edit, hapus artikel dengan slug otomatis
-- **Manajemen Carousel** — kelola banner gambar halaman utama
-- **Manajemen Galeri** — upload dan kelola foto galeri
-- **Manajemen Sarana Prasarana** — data inventaris fasilitas sekolah
-- **Manajemen Profil** — update informasi sekolah, logo, dan foto kepala sekolah
-- **Manajemen Pengguna** — pengelolaan akun admin dan kontributor
-
-### 👥 Sistem Peran (Role)
-| Peran | Akses |
+| Fitur | Keterangan |
 |---|---|
-| **Admin** | Akses penuh ke semua fitur termasuk manajemen pengguna |
-| **Kontributor** | Akses ke konten (artikel, galeri, sarana) tanpa manajemen pengguna |
+| **XSS Protection** | Filter input untuk mencegah Cross-Site Scripting |
+| **SQL Injection Prevention** | Query menggunakan Active Record / prepared statement CI3 |
+| **CSRF Protection** | Token CSRF pada setiap form |
+| **Password Hashing** | Password disimpan dalam bentuk hash |
+| **MIME Type Validation** | Validasi tipe file upload berdasarkan MIME, bukan ekstensi |
+| **File Upload Validation** | Pembatasan ekstensi, ukuran, dan tipe file |
+| **Encrypted Filename** | Nama file upload dienkripsi untuk mencegah path guessing |
 
 ---
 
-## 🔒 Keamanan
+## 🗄️ Struktur Database
 
-Proyek ini menerapkan berbagai lapisan keamanan:
+```sql
+user           — Data akun pengguna (admin & kontributor)
+artikel        — Artikel/berita sekolah
+carousel       — Konten slider halaman utama
+galeri         — Galeri foto
+profil         — Profil lengkap sekolah
+sarana_prasarana — Data inventaris sarana dan prasarana
+```
 
-| Proteksi | Implementasi |
+### Diagram Relasi
+
+```
+user ──< artikel
+user ──< galeri
+user ──< profil
+user ──< sarana_prasarana
+```
+
+---
+
+## 🛠️ Teknologi
+
+- **Backend:** PHP, CodeIgniter 3
+- **Database:** MySQL / MariaDB
+- **Frontend:** HTML, CSS, JavaScript
+- **Server:** Apache (XAMPP / Laragon)
+
+---
+
+## ⚙️ Instalasi
+
+### Prasyarat
+- PHP >= 7.x
+- MySQL / MariaDB
+- Web server (Apache/Nginx) atau XAMPP/Laragon
+
+### Langkah Instalasi
+
+1. **Clone repository**
+   ```bash
+   git clone https://github.com/NickyIno/ci3-si-sekolah.git
+   cd ci3-si-sekolah
+   ```
+
+2. **Import database**
+
+   Buat database baru di MySQL, lalu import file SQL:
+   ```bash
+   mysql -u root -p nama_database < database/si_sekolah.sql
+   ```
+
+   Atau jalankan query berikut secara manual:
+   ```sql
+   CREATE TABLE `user` (
+     `id` int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+     `nama` varchar(50) NOT NULL,
+     `username` varchar(50) NOT NULL,
+     `password` varchar(255) NOT NULL,
+     `role` enum('admin','kontributor') NOT NULL
+   ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+   CREATE TABLE `artikel` (
+     `id` int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+     `judul` varchar(100) NOT NULL,
+     `slug` varchar(100) NOT NULL,
+     `gambar` varchar(100) NOT NULL,
+     `deskripsi` text,
+     `tanggal` datetime DEFAULT CURRENT_TIMESTAMP,
+     `user_id` int DEFAULT NULL,
+     `viewer` int DEFAULT '0',
+     FOREIGN KEY (`user_id`) REFERENCES `user`(`id`) ON DELETE CASCADE ON UPDATE CASCADE
+   ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+   CREATE TABLE `carousel` (
+     `id` int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+     `judul` varchar(30) NOT NULL,
+     `gambar` varchar(100) DEFAULT NULL,
+     `deskripsi` varchar(100) DEFAULT NULL
+   ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+   CREATE TABLE `galeri` (
+     `id` int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+     `judul` varchar(100) NOT NULL,
+     `gambar` varchar(100) DEFAULT NULL,
+     `tanggal` datetime DEFAULT CURRENT_TIMESTAMP,
+     `user_id` int DEFAULT NULL,
+     FOREIGN KEY (`user_id`) REFERENCES `user`(`id`) ON DELETE CASCADE ON UPDATE CASCADE
+   ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+   CREATE TABLE `profil` (
+     `id` int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+     `user_id` int DEFAULT NULL,
+     `nama_sekolah` varchar(150) DEFAULT NULL,
+     `visi` text,
+     `misi` text,
+     `kepala_sekolah` varchar(100) DEFAULT NULL,
+     `profil` text,
+     `tentang` text,
+     `alamat` varchar(255) DEFAULT NULL,
+     `logo` varchar(255) DEFAULT NULL,
+     `foto_kepala_sekolah` varchar(255) DEFAULT NULL,
+     FOREIGN KEY (`user_id`) REFERENCES `user`(`id`) ON DELETE CASCADE ON UPDATE CASCADE
+   ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+   CREATE TABLE `sarana_prasarana` (
+     `id` int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+     `judul` varchar(100) NOT NULL,
+     `gambar` varchar(100) DEFAULT NULL,
+     `jumlah` int DEFAULT NULL,
+     `keadaan` enum('baik','tidak baik') DEFAULT NULL,
+     `tanggal` datetime DEFAULT CURRENT_TIMESTAMP,
+     `user_id` int DEFAULT NULL,
+     FOREIGN KEY (`user_id`) REFERENCES `user`(`id`) ON DELETE CASCADE ON UPDATE CASCADE
+   ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+   ```
+
+3. **Konfigurasi database**
+
+   Edit file `application/config/database.php`:
+   ```php
+   $db['default'] = array(
+       'hostname' => 'localhost',
+       'username' => 'root',
+       'password' => '',
+       'database' => 'nama_database',
+       // ...
+   );
+   ```
+
+4. **Konfigurasi base URL**
+
+   Edit file `application/config/config.php`:
+   ```php
+   $config['base_url'] = 'http://localhost/ci3-si-sekolah/';
+   ```
+
+5. **Jalankan aplikasi**
+
+   Akses melalui browser:
+   ```
+   http://localhost/ci3-si-sekolah
+   ```
+
+---
+
+## 👤 Role Pengguna
+
+| Role | Akses |
 |---|---|
-| **XSS (Cross-Site Scripting)** | Sanitasi input dengan `xss_clean()` bawaan CI3 |
-| **SQL Injection** | Query Builder CI3 dengan prepared statements |
-| **CSRF (Cross-Site Request Forgery)** | CSRF Token pada semua form |
-| **Password Hashing** | Bcrypt hashing via `password_hash()` |
-| **Validasi MIME Type** | Pengecekan tipe file sebenarnya saat upload |
-| **Validasi Ekstensi File** | Whitelist ekstensi yang diizinkan |
-| **Enkripsi Nama File** | Nama file dienkripsi/diacak saat disimpan ke server |
+| **Admin** | Akses penuh ke semua fitur dashboard |
+| **Kontributor** | Dapat mengelola konten tertentu (artikel, galeri, dll) |
 
 ---
 
-## 📁 Struktur Proyek
+## 📁 Struktur Direktori
 
 ```
 ci3-si-sekolah/
 ├── application/
-│   ├── config/          # Konfigurasi aplikasi, database, routes
-│   ├── controllers/     # Controller utama
-│   │   ├── Home.php         # Halaman publik
-│   │   ├── Dashboard.php    # Panel admin
-│   │   ├── Artikel.php
-│   │   ├── Carousel.php
-│   │   ├── Galeri.php
-│   │   ├── Profile.php
-│   │   ├── Sarana.php
-│   │   ├── User.php         # Auth (login/logout)
-│   │   └── KelolaUser.php   # Manajemen pengguna
-│   ├── models/          # Model database
-│   ├── views/
-│   │   ├── home/            # Tampilan publik
-│   │   ├── admin/           # Tampilan dashboard
-│   │   └── templates/       # Header & footer
-│   └── .htaccess
+│   ├── config/
+│   ├── controllers/
+│   ├── models/
+│   └── views/
 ├── assets/
-│   ├── bootstrap/       # Bootstrap 5
-│   ├── images/          # Upload gambar
-│   ├── js/              # SweetAlert2
-│   └── node_modules/    # Bootstrap Icons, SweetAlert2
-├── system/              # Core CodeIgniter 3
-├── .htaccess
+│   ├── css/
+│   ├── js/
+│   └── img/
+├── uploads/
 └── index.php
 ```
 
 ---
 
-## 🗄️ Database
-
-Buat database MySQL dan jalankan script berikut:
-
-```sql
--- Tabel Pengguna
-CREATE TABLE `user` (
-  `id` int NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  `nama` varchar(50) NOT NULL,
-  `username` varchar(50) NOT NULL,
-  `password` varchar(255) NOT NULL,
-  `role` enum('admin','kontributor') NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- Tabel Artikel
-CREATE TABLE `artikel` (
-  `id` int NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  `judul` varchar(100) NOT NULL,
-  `slug` varchar(100) NOT NULL,
-  `gambar` varchar(100) NOT NULL,
-  `deskripsi` text,
-  `tanggal` datetime DEFAULT CURRENT_TIMESTAMP,
-  `user_id` int DEFAULT NULL,
-  `viewer` int DEFAULT '0',
-  FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- Tabel Carousel
-CREATE TABLE `carousel` (
-  `id` int NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  `judul` varchar(30) NOT NULL,
-  `gambar` varchar(100) DEFAULT NULL,
-  `deskripsi` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- Tabel Galeri
-CREATE TABLE `galeri` (
-  `id` int NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  `judul` varchar(100) NOT NULL,
-  `gambar` varchar(100) DEFAULT NULL,
-  `tanggal` datetime DEFAULT CURRENT_TIMESTAMP,
-  `user_id` int DEFAULT NULL,
-  FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- Tabel Profil Sekolah
-CREATE TABLE `profil` (
-  `id` int NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  `user_id` int DEFAULT NULL,
-  `nama_sekolah` varchar(150) DEFAULT NULL,
-  `visi` text,
-  `misi` text,
-  `kepala_sekolah` varchar(100) DEFAULT NULL,
-  `profil` text,
-  `tentang` text,
-  `alamat` varchar(255) DEFAULT NULL,
-  `logo` varchar(255) DEFAULT NULL,
-  `foto_kepala_sekolah` varchar(255) DEFAULT NULL,
-  FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- Tabel Sarana dan Prasarana
-CREATE TABLE `sarana_prasarana` (
-  `id` int NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  `judul` varchar(100) NOT NULL,
-  `gambar` varchar(100) DEFAULT NULL,
-  `jumlah` int DEFAULT NULL,
-  `keadaan` enum('baik','tidak baik') DEFAULT NULL,
-  `tanggal` datetime DEFAULT CURRENT_TIMESTAMP,
-  `user_id` int DEFAULT NULL,
-  FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-```
-
----
-
-## ⚙️ Prasyarat
-
-Pastikan lingkungan pengembangan kamu memenuhi persyaratan berikut:
-
-- **PHP** >= 7.4 (dengan ekstensi `mysqli`, `mbstring`, `gd`)
-- **MySQL** >= 5.7 atau **MariaDB** >= 10.3
-- **Web Server**: Apache (dengan `mod_rewrite` aktif) atau Nginx
-- **Composer** (opsional)
-
----
-
-## 🚀 Instalasi
-
-**1. Clone repositori**
-
-```bash
-git clone https://github.com/NickyIno/ci3-si-sekolah.git
-cd ci3-si-sekolah
-```
-
-**2. Siapkan database**
-
-Buat database baru di MySQL, lalu import SQL dari [bagian Database](#-database) di atas.
-
-**3. Konfigurasi aplikasi**
-
-Salin dan sesuaikan file konfigurasi:
-
-```bash
-# Edit konfigurasi database
-nano application/config/database.php
-
-# Edit base URL
-nano application/config/config.php
-```
-
-**4. Buat akun admin pertama**
-
-Karena password harus di-hash, jalankan script ini sekali untuk membuat akun admin:
-
-```php
-// Jalankan via browser sekali: contoh.com/user/seed
-// atau insert manual dengan password yang di-hash:
-$hashed = password_hash('password_kamu', PASSWORD_BCRYPT);
-// INSERT INTO user VALUES (null, 'Admin', 'admin', '$hashed', 'admin');
-```
-
-**5. Pastikan folder `assets/images/` dapat ditulis**
-
-```bash
-chmod 755 assets/images/
-```
-
-**6. Akses aplikasi**
-
-```
-http://localhost/ci3-si-sekolah/
-http://localhost/ci3-si-sekolah/user/login  # untuk login admin
-```
-
----
-
-## 🔧 Konfigurasi
-
-### `application/config/database.php`
-
-```php
-$db['default'] = array(
-    'hostname' => 'localhost',
-    'username' => 'root',        // sesuaikan
-    'password' => '',            // sesuaikan
-    'database' => 'si_sekolah', // nama database kamu
-    'dbdriver' => 'mysqli',
-    ...
-);
-```
-
-### `application/config/config.php`
-
-```php
-$config['base_url'] = 'http://localhost/ci3-si-sekolah/';
-$config['csrf_protection'] = TRUE;
-$config['csrf_token_name'] = 'csrf_token';
-```
-
----
-
-## 📖 Penggunaan
-
-### Login sebagai Admin
-
-1. Buka `http://localhost/ci3-si-sekolah/user/login`
-2. Masukkan username dan password admin
-3. Akan diarahkan ke dashboard `/dashboard`
-
-### Mengelola Konten
-
-Dari dashboard, kamu bisa:
-- **Profil** → Update nama sekolah, visi misi, info kepala sekolah
-- **Artikel** → Tambah berita/pengumuman baru
-- **Carousel** → Atur banner halaman utama
-- **Galeri** → Upload foto kegiatan
-- **Sarana Prasarana** → Catat dan update inventaris fasilitas
-- **Kelola User** → Tambah akun kontributor *(admin only)*
-
----
-
-## 🤝 Kontribusi
-
-Kontribusi sangat disambut! Berikut langkahnya:
-
-1. **Fork** repositori ini
-2. Buat branch fitur baru: `git checkout -b fitur/nama-fitur`
-3. Commit perubahan: `git commit -m 'feat: tambah fitur keren'`
-4. Push ke branch: `git push origin fitur/nama-fitur`
-5. Buat **Pull Request**
-
-Untuk bug atau saran, silakan buka [Issue](https://github.com/NickyIno/ci3-si-sekolah/issues).
-
----
-
 ## 📄 Lisensi
 
-Proyek ini dilisensikan di bawah [MIT License](LICENSE).
+Project ini dibuat untuk keperluan akademik / portofolio.
 
 ---
 
-<div align="center">
-
-Dibuat dengan ❤️ menggunakan **CodeIgniter 3**
-
-⭐ Jangan lupa beri bintang kalau proyek ini membantu kamu!
-
-</div>
+> Dibuat dengan ❤️ menggunakan CodeIgniter 3
